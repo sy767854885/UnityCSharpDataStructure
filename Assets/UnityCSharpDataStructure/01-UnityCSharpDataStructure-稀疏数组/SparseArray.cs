@@ -69,7 +69,7 @@ public class SparseArray : MonoBehaviour
         sparseArr[0, 0] = chessArr.GetLength(0);
         sparseArr[0, 1] = chessArr.GetLength(1);
         sparseArr[0, 2] = sum;
-        //遍历棋盘的数组，将非0的值(第几行第几列，以及值)存入稀疏数组中，
+        //遍历棋盘的数组，将非0的值(第几行第几列，以及值)存入稀疏数组中，Count是稀疏数组的第几行
         int count = 0;
         for (int i = 0; i < chessArr.GetLength(0); i++)
         {
@@ -77,6 +77,7 @@ public class SparseArray : MonoBehaviour
             {
                 if (chessArr_1[i, j] != 0)
                 {
+                    //默认从第1行开始，第0行存入了棋盘的基础数据
                     count++;
                     sparseArr[count, 0] = i;//行
                     sparseArr[count, 1] = j;//列
@@ -103,15 +104,17 @@ public class SparseArray : MonoBehaviour
     /// </summary>
     private void RestoreCheckerBoard(int[,] sparseArr)
     {
-        //3.将稀疏数组转换为二维数组
+        
         string temp = "";
         //取出第一行的数据，得到棋盘是多大的，这里是15*15的大小
         int[,] chessArr2 = new int[sparseArr[0, 0], sparseArr[0, 1]];
         for (int i = 1; i < sparseArr.GetLength(0); i++)
         {
+            //1,0 是1 1,1是2 1,2是1
+            //2,0 是2 2,1是3 2,2是2
             chessArr2[sparseArr[i, 0], sparseArr[i, 1]] = sparseArr[i, 2];
         }
-        //输出这个稀疏数组转化的二维数组
+        //遍历输出打印
         for (int i = 0; i < chessArr2.GetLength(0); i++)
         {
             for (int j = 0; j < chessArr2.GetLength(1); j++)
