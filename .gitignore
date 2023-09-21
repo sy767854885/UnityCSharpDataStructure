@@ -3,3 +3,5 @@ Logs/
 Temp/
 .vsconfig
 UnityCSharpDataStructure.sln
+Assembly-CSharp.csproj
+obj/
